@@ -1,2 +1,55 @@
 ---
-# TODO
+- name: Enable GlusterFS repo (RedHat).
+  copy:
+    src: glusterfs-epel.repo
+    dest: /etc/yum.repos.d/glusterfs-epel.repo
+    owner: root
+    group: root
+    mode: 0644
+  when: ansible_os_family == 'RedHat'
+
+- name: Import GlusterFS GPG key.
+  rpm_key:
+    key: "http://download.gluster.org/pub/gluster/glusterfs/LATEST/CentOS/pub.key"
+    state: present
+
+- name: Ensure GlusterFS Server is installed.
+  yum: "pkg={{ item }} state=installed"
+  with_items:
+    - glusterfs-server
+    - glusterfs-client
+  when: ansible_os_family == 'RedHat'
+
+- name: Ensure GlusterFS is started and enabled at boot.
+  service: name=glusterd state=started enabled=yes
+
+- name: Ensure GlusterFS brick directories exist.
+  file: "path={{ item }} state=directory"
+  with_items: glusterfs_brick_dirs
+
+# TODO: changed_when, failed_when(?).
+- name: Configure GlusterFS peers.
+  shell: "gluster peer probe {{ item }}"
+  register: gluster_peer_probe
+  failed_when: false
+  with_items: glusterfs_peers
+
+- debug: var=gluster_peer_probe
+
+# TODO: changed_when, failed_when(?).
+- name: Configure GlusterFS bricks.
+  shell: "gluster volume create {{ item.name }} {{ item.config }}"
+  register: gluster_volume_create
+  failed_when: false
+  with_items: glusterfs_bricks
+
+- debug: var=gluster_volume_create
+
+# TODO: failed_when(?).
+- name: Ensure GlusterFS bricks are started.
+  shell: "gluster volume start {{ item.name }}"
+  register: gluster_volume_start
+  failed_when: false
+  with_items: glusterfs_bricks
+
+- debug: var=gluster_volume_start
