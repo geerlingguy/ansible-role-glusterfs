@@ -1,27 +1,15 @@
 ---
-- name: Enable GlusterFS repo (RedHat).
-  copy:
-    src: glusterfs-epel.repo
-    dest: /etc/yum.repos.d/glusterfs-epel.repo
-    owner: root
-    group: root
-    mode: 0644
+- name: Include OS-specific variables.
+  include_vars: "{{ ansible_os_family }}.yml"
+
+- include: setup-RedHat.yml
   when: ansible_os_family == 'RedHat'
 
-- name: Import GlusterFS GPG key.
-  rpm_key:
-    key: "http://download.gluster.org/pub/gluster/glusterfs/LATEST/CentOS/pub.key"
-    state: present
-
-- name: Ensure GlusterFS Server is installed.
-  yum: "pkg={{ item }} state=installed"
-  with_items:
-    - glusterfs-server
-    - glusterfs-client
-  when: ansible_os_family == 'RedHat'
+- include: setup-Debian.yml
+  when: ansible_os_family == 'Debian'
 
 - name: Ensure GlusterFS is started and enabled at boot.
-  service: name=glusterd state=started enabled=yes
+  service: "name={{ glusterfs_daemon }} state=started enabled=yes"
 
 - name: Ensure GlusterFS brick directories exist.
   file: "path={{ item }} state=directory"

@@ -1,0 +1,6 @@
+---
+- name: Ensure GlusterFS Server is installed.
+  apt: "pkg={{ item }} state=installed"
+  with_items:
+    - glusterfs-server
+    - glusterfs-client

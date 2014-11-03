@@ -1,0 +1,19 @@
+---
+- name: Enable GlusterFS yum repository.
+  copy:
+    src: glusterfs-epel.repo
+    dest: /etc/yum.repos.d/glusterfs-epel.repo
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Import GlusterFS GPG key.
+  rpm_key:
+    key: "http://download.gluster.org/pub/gluster/glusterfs/LATEST/CentOS/pub.key"
+    state: present
+
+- name: Ensure GlusterFS Server is installed.
+  yum: "pkg={{ item }} state=installed"
+  with_items:
+    - glusterfs-server
+    - glusterfs-client
