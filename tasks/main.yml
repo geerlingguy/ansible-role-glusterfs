@@ -12,7 +12,3 @@
 
 - name: Ensure GlusterFS is started and enabled at boot.
   service: "name={{ glusterfs_daemon }} state=started enabled=yes"
-
-- name: Ensure GlusterFS brick directories exist.
-  file: "path={{ item }} state=directory"
-  with_items: glusterfs_brick_dirs
