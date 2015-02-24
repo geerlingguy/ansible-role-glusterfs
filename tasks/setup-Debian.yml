@@ -1,5 +1,5 @@
 ---
-- name: Ensure GlusterFS Server is installed.
+- name: Ensure GlusterFS is installed.
   apt: "pkg={{ item }} state=installed"
   with_items:
     - glusterfs-server

@@ -12,7 +12,7 @@
     key: "http://download.gluster.org/pub/gluster/glusterfs/LATEST/CentOS/pub.key"
     state: present
 
-- name: Ensure GlusterFS Server is installed.
+- name: Ensure GlusterFS is installed.
   yum: "pkg={{ item }} state=installed"
   with_items:
     - glusterfs-server

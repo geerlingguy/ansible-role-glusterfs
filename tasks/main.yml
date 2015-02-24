@@ -1,7 +1,9 @@
 ---
+# Include variables and define needed variables.
 - name: Include OS-specific variables.
   include_vars: "{{ ansible_os_family }}.yml"
 
+# Setup/install tasks.
 - include: setup-RedHat.yml
   when: ansible_os_family == 'RedHat'
 
@@ -14,30 +16,3 @@
 - name: Ensure GlusterFS brick directories exist.
   file: "path={{ item }} state=directory"
   with_items: glusterfs_brick_dirs
-
-# TODO: changed_when, failed_when(?).
-- name: Configure GlusterFS peers.
-  shell: "gluster peer probe {{ item }}"
-  register: gluster_peer_probe
-  failed_when: false
-  with_items: glusterfs_peers
-
-- debug: var=gluster_peer_probe
-
-# TODO: changed_when, failed_when(?).
-- name: Configure GlusterFS bricks.
-  shell: "gluster volume create {{ item.name }} {{ item.config }}"
-  register: gluster_volume_create
-  failed_when: false
-  with_items: glusterfs_bricks
-
-- debug: var=gluster_volume_create
-
-# TODO: failed_when(?).
-- name: Ensure GlusterFS bricks are started.
-  shell: "gluster volume start {{ item.name }}"
-  register: gluster_volume_start
-  failed_when: false
-  with_items: glusterfs_bricks
-
-- debug: var=gluster_volume_start
