@@ -12,7 +12,11 @@ This role performs basic installation and setup of Gluster, but it does not conf
 
 ## Role Variables
 
-None.
+Available variables are listed below, along with default values (see `defaults/main.yml`):
+
+    glusterfs_default_release: ""
+
+You can specify a `default_release` for apt on Debian/Ubuntu by overriding this variable. This is helpful if you need a different package or version for the main GlusterFS packages (e.g. GlusterFS 3.5.x instead of 3.2.x with the `wheezy-backports` default release on Debian Wheezy).
 
 ## Dependencies
 
