@@ -18,8 +18,8 @@ galaxy_info:
     - trusty
   - name: Debian
     versions:
-    - 6
-    - 7
+    - wheezy
+    - jessie
   galaxy_tags:
     - system
     - networking
