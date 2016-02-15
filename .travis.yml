@@ -1,4 +1,5 @@
 ---
+sudo: required
 language: python
 python: "2.7"
 
@@ -33,3 +34,6 @@ script:
 
   # Make sure GlusterFS daemon is running.
   - sudo service glusterfs-server status
+
+notifications:
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/

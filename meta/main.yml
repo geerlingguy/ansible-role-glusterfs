@@ -6,7 +6,7 @@ galaxy_info:
   description: GlusterFS installation for Linux.
   company: "Midwestern Mac, LLC"
   license: "license (BSD, MIT)"
-  min_ansible_version: 1.4
+  min_ansible_version: 1.8
   platforms:
   - name: EL
     versions:
@@ -20,7 +20,7 @@ galaxy_info:
     versions:
     - 6
     - 7
-  categories:
+  galaxy_tags:
     - system
     - networking
     - cloud
