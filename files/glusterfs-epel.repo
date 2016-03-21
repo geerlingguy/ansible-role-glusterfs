@@ -6,7 +6,7 @@ baseurl=http://download.gluster.org/pub/gluster/glusterfs/LATEST/EPEL.repo/epel-
 enabled=1
 skip_if_unavailable=1
 gpgcheck=1
-gpgkey=http://download.gluster.org/pub/gluster/glusterfs/LATEST/EPEL.repo/pub.key
+gpgkey=http://download.gluster.org/pub/gluster/glusterfs/LATEST/rsa.pub
 
 [glusterfs-noarch-epel]
 name=GlusterFS is a clustered file-system capable of scaling to several petabytes.
@@ -14,7 +14,7 @@ baseurl=http://download.gluster.org/pub/gluster/glusterfs/LATEST/EPEL.repo/epel-
 enabled=1
 skip_if_unavailable=1
 gpgcheck=1
-gpgkey=http://download.gluster.org/pub/gluster/glusterfs/LATEST/EPEL.repo/pub.key
+gpgkey=http://download.gluster.org/pub/gluster/glusterfs/LATEST/rsa.pub
 
 [glusterfs-source-epel]
 name=GlusterFS is a clustered file-system capable of scaling to several petabytes. - Source
@@ -22,4 +22,4 @@ baseurl=http://download.gluster.org/pub/gluster/glusterfs/LATEST/EPEL.repo/epel-
 enabled=0
 skip_if_unavailable=1
 gpgcheck=1
-gpgkey=http://download.gluster.org/pub/gluster/glusterfs/LATEST/EPEL.repo/pub.key
+gpgkey=http://download.gluster.org/pub/gluster/glusterfs/LATEST/rsa.pub

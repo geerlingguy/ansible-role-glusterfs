@@ -9,7 +9,7 @@
 
 - name: Import GlusterFS GPG key.
   rpm_key:
-    key: "https://download.gluster.org/pub/gluster/glusterfs/LATEST/EPEL.repo/pub.key"
+    key: "http://download.gluster.org/pub/gluster/glusterfs/LATEST/rsa.pub"
     state: present
 
 - name: Ensure GlusterFS is installed.
