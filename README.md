@@ -26,7 +26,7 @@ None.
 
     - hosts: server
       roles:
-        - { role: geerlingguy.glusterfs }
+        - geerlingguy.glusterfs
 
 ## License
 
