@@ -9,5 +9,3 @@
   with_items:
     - glusterfs-server
     - glusterfs-client
-
-...
