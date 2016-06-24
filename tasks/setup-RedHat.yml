@@ -7,7 +7,7 @@
 - name: Install Packages
   yum: name={{ item }}  state=present
   with_items:
-    - glusterfs
+    - glusterfs-server
     - glusterfs-client-xlators
 
 ...
