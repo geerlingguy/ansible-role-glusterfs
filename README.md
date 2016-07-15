@@ -28,6 +28,8 @@ None.
       roles:
         - geerlingguy.glusterfs
 
+For a real-world use example, read through [Simple GlusterFS Setup with Ansible](http://www.jeffgeerling.com/blog/simple-glusterfs-setup-ansible), a blog post by this role's author, which is included in Chapter 8 of [Ansible for DevOps](https://www.ansiblefordevops.com/).
+
 ## License
 
 MIT / BSD
