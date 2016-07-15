@@ -6,22 +6,22 @@ env:
     version: 6
     init: /sbin/init
     run_opts: ""
-    glusterfs_check: "service glusterd status"
+    service: glusterd
   - distribution: centos
     version: 7
     init: /usr/lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-    glusterfs_check: "systemctl status glusterd.service"
+    service: glusterd
   - distribution: ubuntu
     version: 14.04
     init: /sbin/init
     run_opts: ""
-    glusterfs_check: "service glusterfs-server status"
+    service: glusterfs-server
   - distribution: ubuntu
     version: 12.04
     init: /sbin/init
     run_opts: ""
-    glusterfs_check: "service glusterfs-server status"
+    service: glusterfs-server
 
 services:
   - docker
@@ -54,7 +54,7 @@ script:
     || (echo 'Idempotence test: fail' && exit 1)
 
   # Make sure Gluster is running.
-  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm sudo "${glusterfs_check}"'
+  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm sudo service ${service} status'
 
 after_success:
   # Clean up
