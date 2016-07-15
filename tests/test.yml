@@ -1,14 +1,5 @@
 ---
 - hosts: all
 
-  pre_tasks:
-    - name: Ensure build dependencies are installed (RedHat).
-      yum: name="sudo" state=present
-      when: ansible_os_family == 'RedHat'
-
-    - name: Ensure build dependencies are installed (Debian).
-      apt: name="sudo" state=present
-      when: ansible_os_family == 'Debian'
-
   roles:
     - role_under_test
