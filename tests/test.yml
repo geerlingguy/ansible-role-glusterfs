@@ -1,6 +1,5 @@
 ---
-- hosts: localhost
-  remote_user: root
+- hosts: all
 
   roles:
-    - ansible-role-glusterfs
+    - role_under_test
