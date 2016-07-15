@@ -1,5 +1,9 @@
 ---
 - hosts: all
 
+  pre_tasks:
+    - name: Ensure build dependencies are installed.
+      package: name="sudo" state=present
+
   roles:
     - role_under_test
