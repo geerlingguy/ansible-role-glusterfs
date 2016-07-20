@@ -16,12 +16,12 @@ env:
     version: 14.04
     init: /sbin/init
     run_opts: ""
-    service: glusterfs-server
+    service: gluster
   - distribution: ubuntu
     version: 12.04
     init: /sbin/init
     run_opts: ""
-    service: glusterfs-server
+    service: gluster
 
 services:
   - docker
