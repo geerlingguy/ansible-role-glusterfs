@@ -54,7 +54,7 @@ script:
     || (echo 'Idempotence test: fail' && exit 1)
 
   # Make sure Gluster is running.
-  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm sudo ${service} status'
+  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm sudo "${service}" status'
 
 after_success:
   # Clean up
