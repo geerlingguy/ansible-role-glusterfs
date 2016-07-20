@@ -18,6 +18,11 @@ Available variables are listed below, along with default values (see `defaults/m
 
 You can specify a `default_release` for apt on Debian/Ubuntu by overriding this variable. This is helpful if you need a different package or version for the main GlusterFS packages (e.g. GlusterFS 3.5.x instead of 3.2.x with the `wheezy-backports` default release on Debian Wheezy).
 
+    glusterfs_ppa_use: yes
+    glusterfs_ppa_version: "3.5"
+
+For Ubuntu, specify whether to use the official Gluster PPA, and which version of the PPA to use. See Gluster's [Getting Started Guide](http://www.gluster.org/community/documentation/index.php/Getting_started_install) for more info.
+
 ## Dependencies
 
 None.
