@@ -50,7 +50,7 @@ script:
     || (echo 'Idempotence test: fail' && exit 1)
 
   # Make sure Gluster is running.
-  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ps aux | grep [g]lusterd'
+  - sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm "ps aux | grep [g]lusterd"
 
 after_success:
   # Clean up
