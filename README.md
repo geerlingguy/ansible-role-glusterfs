@@ -23,6 +23,12 @@ You can specify a `default_release` for apt on Debian/Ubuntu by overriding this 
 
 For Ubuntu, specify whether to use the official Gluster PPA, and which version of the PPA to use. See Gluster's [Getting Started Guide](http://www.gluster.org/community/documentation/index.php/Getting_started_install) for more info.
 
+    glusterfs_gluster_components:
+      - glusterfs-server
+      - glusterfs-client
+
+You can select whether to install the server component, client component or both (default)
+
 ## Dependencies
 
 None.
