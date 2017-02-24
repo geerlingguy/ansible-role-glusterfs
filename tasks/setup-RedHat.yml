@@ -6,4 +6,4 @@
 
 - name: Install Packages
   yum: name={{ item }}  state=present
-  with_items: {{ glusterfs_gluster_components }}
+  with_items: "{{ glusterfs_gluster_components }}"
