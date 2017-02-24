@@ -11,9 +11,7 @@
   apt:
     name: "{{ item }}"
     state: absent
-  with_items:
-    - glusterfs-server
-    - glusterfs-client
+  with_items: "{{ glusterfs_gluster_components }}"
   when: glusterfs_ppa_added.changed
 
 - name: Ensure GlusterFS is installed.
@@ -21,6 +19,4 @@
     name: "{{ item }}"
     state: installed
     default_release: "{{ glusterfs_default_release }}"
-  with_items:
-    - glusterfs-server
-    - glusterfs-client
+  with_items: "{{ glusterfs_gluster_components }}"
