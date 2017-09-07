@@ -5,8 +5,9 @@ env:
   - distro: centos7
   - distro: ubuntu1604
   - distro: ubuntu1404
-  - distro: debian9
-  - distro: debian8
+  # See: https://github.com/geerlingguy/ansible-role-glusterfs/issues/20
+  # - distro: debian9
+  # - distro: debian8
 
 script:
   # Download test shim.
