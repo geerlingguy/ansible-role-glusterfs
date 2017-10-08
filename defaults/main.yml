@@ -5,4 +5,4 @@ glusterfs_ppa_use: yes
 glusterfs_ppa_version: "3.8"
 
 # For direct install
-gluster_version: "3.12"
+gluster_version: "3.11"
