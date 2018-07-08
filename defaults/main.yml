@@ -1,5 +1,7 @@
 ---
+glusterfs_daemon: glusterd
+
 # For Ubuntu.
 glusterfs_default_release: ""
 glusterfs_ppa_use: yes
-glusterfs_ppa_version: "3.12"
+glusterfs_ppa_version: "3.13"

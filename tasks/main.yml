@@ -1,7 +1,10 @@
 ---
-# Include variables and define needed variables.
-- name: Include OS-specific variables.
-  include_vars: "{{ ansible_os_family }}.yml"
+- name: Override glusterfs_daemon for Ubuntu 14.04.
+  set_fact:
+    glusterfs_daemon: glusterfs-server
+  when:
+    - ansible_distribution == 'Ubuntu'
+    - ansible_distribution_version == "14.04"
 
 # Setup/install tasks.
 - include: setup-RedHat.yml
