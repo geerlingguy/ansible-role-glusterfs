@@ -15,6 +15,7 @@
     - glusterfs-server
     - glusterfs-client
   when: glusterfs_ppa_added.changed
+  tags: ['skip_ansible_lint']
 
 - name: Ensure GlusterFS is installed.
   apt:
