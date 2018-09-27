@@ -8,20 +8,20 @@ galaxy_info:
   license: "license (BSD, MIT)"
   min_ansible_version: 2.0
   platforms:
-  - name: EL
-    versions:
-    - 6
-    - 7
-  - name: Ubuntu
-    versions:
-    - trusty
-    - xenial
-    - bionic
-  - name: Debian
-    versions:
-    - wheezy
-    - jessie
-    - stretch
+    - name: EL
+      versions:
+        - 6
+        - 7
+    - name: Ubuntu
+      versions:
+        - trusty
+        - xenial
+        - bionic
+    - name: Debian
+      versions:
+        - wheezy
+        - jessie
+        - stretch
   galaxy_tags:
     - system
     - networking
@@ -29,3 +29,5 @@ galaxy_info:
     - clustering
     - files
     - sharing
+    - gluster
+    - glusterfs

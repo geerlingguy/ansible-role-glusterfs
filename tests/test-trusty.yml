@@ -1,9 +1,0 @@
----
-- hosts: all
-
-  vars:
-    # It looks like 3.10 is the last maintained PPA release for Trusty.
-    glusterfs_ppa_version: "3.10"
-
-  roles:
-    - role_under_test
