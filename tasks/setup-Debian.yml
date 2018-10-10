@@ -1,21 +1,31 @@
 ---
-- name: Add PPA for GlusterFS.
-  apt_repository:
-    repo: 'ppa:gluster/glusterfs-{{ glusterfs_ppa_version }}'
+- name: Add DEB repository pub key for GlusterFS.
+  apt_key:
+    url: 'https://download.gluster.org/pub/gluster/glusterfs/{{ glusterfs_ppa_version }}/rsa.pub'
     state: present
-    update_cache: true
-  register: glusterfs_ppa_added
-  when: glusterfs_ppa_use
+  register: glusterfs_pub_key_added
 
-- name: Ensure GlusterFS will reinstall if the PPA was just added.
+- name: Get DEB architecture
+  shell: dpkg --print-architecture
+  register: deb_architecture
+
+- name: Install DEB source
+  apt_repository:
+    repo: "deb [trusted=yes] https://download.gluster.org/pub/gluster/glusterfs/LATEST/Debian/\
+      {{ ansible_distribution_major_version }}/{{ deb_architecture.stdout }}/apt {{ ansible_distribution_release }} \
+      main"
+    state: present
+    filename: gluster
+  register: glusterfs_deb_source_added
+
+- name: Ensure GlusterFS will reinstall if the DEB source was just added.
   apt:
     name: "{{ item }}"
     state: absent
   with_items:
     - glusterfs-server
     - glusterfs-client
-  when: glusterfs_ppa_added.changed
-  tags: ['skip_ansible_lint']
+  when: glusterfs_deb_source_added.changed
 
 - name: Ensure GlusterFS is installed.
   apt:
