@@ -1,7 +1,10 @@
 ---
 - name: Ensure dependencies are installed.
   apt:
-    name: gnupg2
+    name:
+      - gnupg2
+      - apt-transport-https
+      - ca-certificates
     state: present
 
 - name: Ensure repository pubkey for GlusterFS is present.
