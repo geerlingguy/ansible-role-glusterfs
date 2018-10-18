@@ -1,0 +1,24 @@
+---
+
+- apt: name=apt-transport-https state=installed update_cache=yes
+
+# wget -O - http://download.gluster.org/pub/gluster/glusterfs/{{ gluster_version }}/rsa.pub | apt-key add -
+- name: Add the GPG key to apt
+  apt_key:
+    url: "http://download.gluster.org/pub/gluster/glusterfs/{{ gluster_version }}/rsa.pub"
+    state: present
+
+# echo deb http://download.gluster.org/pub/gluster/glusterfs/{{ gluster_version }}/LATEST/Debian/stretch/apt stretch main >
+#      /etc/apt/sources.list.d/gluster.list
+# Add specified repository into sources list using specified filename.
+- apt_repository:
+    repo: deb http://download.gluster.org/pub/gluster/glusterfs/{{ gluster_version }}/LATEST/Debian/stretch/apt stretch main
+    state: present
+    filename: 'gluster'
+
+# apt-get install [ glusterfs-server | glusterfs-client ]
+#- name: Update repositories cache and install "glusterfs client server" packages
+- apt: name="{{ item }}" state=installed update_cache=yes
+  with_items:
+    - glusterfs-server
+    - glusterfs-client
