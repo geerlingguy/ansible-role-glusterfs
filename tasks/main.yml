@@ -10,7 +10,7 @@
 - include: setup-RedHat.yml
   when: ansible_os_family == 'RedHat'
 
-- include: setup-Debian.yml
+- include: setup-{{ ansible_distribution }}.yml
   when: ansible_os_family == 'Debian'
 
 - name: Ensure GlusterFS is started and enabled at boot.
