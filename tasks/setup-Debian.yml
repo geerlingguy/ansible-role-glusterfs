@@ -1,15 +1,21 @@
 ---
-- name: Add DEB repository pub key for GlusterFS.
+- name: Ensure dependencies are installed.
+  apt:
+    name: gnupg2
+    state: present
+
+- name: Ensure repository pubkey for GlusterFS is present.
   apt_key:
     url: 'https://download.gluster.org/pub/gluster/glusterfs/{{ glusterfs_ppa_version }}/rsa.pub'
     state: present
   register: glusterfs_pub_key_added
 
-- name: Get DEB architecture
-  shell: dpkg --print-architecture
+- name: Get the DEB architecture.
+  command: dpkg --print-architecture
+  changed_when: false
   register: deb_architecture
 
-- name: Install DEB source
+- name: Ensure debian repo is present.
   apt_repository:
     repo: "deb [trusted=yes] https://download.gluster.org/pub/gluster/glusterfs/LATEST/Debian/\
       {{ ansible_distribution_major_version }}/{{ deb_architecture.stdout }}/apt {{ ansible_distribution_release }} \
@@ -20,18 +26,17 @@
 
 - name: Ensure GlusterFS will reinstall if the DEB source was just added.
   apt:
-    name: "{{ item }}"
+    name:
+      - glusterfs-server
+      - glusterfs-client
     state: absent
-  with_items:
-    - glusterfs-server
-    - glusterfs-client
   when: glusterfs_deb_source_added.changed
+  tags: ['skip_ansible_lint']
 
 - name: Ensure GlusterFS is installed.
   apt:
-    name: "{{ item }}"
+    name:
+      - glusterfs-server
+      - glusterfs-client
     state: present
     default_release: "{{ glusterfs_default_release }}"
-  with_items:
-    - glusterfs-server
-    - glusterfs-client
