@@ -9,7 +9,7 @@
 
 - name: Ensure repository pubkey for GlusterFS is present.
   apt_key:
-    url: 'https://download.gluster.org/pub/gluster/glusterfs/{{ glusterfs_ppa_version }}/rsa.pub'
+    url: 'https://download.gluster.org/pub/gluster/glusterfs/{{ glusterfs_gpg_key_version }}/rsa.pub'
     state: present
   register: glusterfs_pub_key_added
 
@@ -20,7 +20,7 @@
 
 - name: Ensure debian repo is present.
   apt_repository:
-    repo: "deb [trusted=yes] https://download.gluster.org/pub/gluster/glusterfs/LATEST/Debian/\
+    repo: "deb [trusted=yes] https://download.gluster.org/pub/gluster/glusterfs/{{ glusterfs_deb_version }}/Debian/\
       {{ ansible_distribution_release }}/{{ deb_architecture.stdout }}/apt {{ ansible_distribution_release }} \
       main"
     state: present
