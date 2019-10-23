@@ -23,7 +23,7 @@ You can specify a `default_release` for apt on Debian/Ubuntu by overriding this 
 
 For Ubuntu, specify whether to use the official Gluster PPA, and which version of the PPA to use. See Gluster's [Getting Started Guide](https://docs.gluster.org/en/latest/Install-Guide/Install/) for more info.
 
-    glusterfs_gpg_key_version: "3.13"
+    glusterfs_gpg_key_version: "7"
     glusterfs_deb_version: "LATEST"
 
 For Debian, specify the version of the GPG key and apt package repository to use. See Gluster's [Getting Started Guide](https://docs.gluster.org/en/latest/Install-Guide/Install/) for more info.
