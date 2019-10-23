@@ -4,7 +4,7 @@ glusterfs_daemon: glusterd
 # For Ubuntu.
 glusterfs_default_release: ""
 glusterfs_ppa_use: true
-glusterfs_ppa_version: "LATEST"
+glusterfs_ppa_version: "7"
 
 # For Debian.
 glusterfs_gpg_key_version: "7"
