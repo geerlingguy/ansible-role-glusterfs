@@ -1,4 +1,9 @@
 ---
+- name: Ensure dependencies are installed.
+  apt:
+    name: dirmngr
+    state: present
+
 - name: Ensure PPA for GlusterFS is present.
   apt_repository:
     repo: 'ppa:gluster/glusterfs-{{ glusterfs_ppa_version }}'
