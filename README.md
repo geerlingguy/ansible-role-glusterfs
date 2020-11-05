@@ -1,6 +1,6 @@
 # Ansible Role: GlusterFS
 
-[![Build Status](https://travis-ci.com/geerlingguy/ansible-role-glusterfs.svg?branch=master)](https://travis-ci.com/geerlingguy/ansible-role-glusterfs)
+[![CI](https://github.com/geerlingguy/ansible-role-glusterfs/workflows/CI/badge.svg?event=push)](https://github.com/geerlingguy/ansible-role-glusterfs/actions?query=workflow%3ACI)
 
 Installs and configures GlusterFS on Linux.
 
