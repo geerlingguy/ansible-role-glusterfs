@@ -4,9 +4,15 @@
     name: "centos-release-gluster{{ glusterfs_default_release }}"
     state: present
 
-- name: Ensure Gluster packages are installed.
+- name: Ensure Gluster Server packages is installed.
   yum:
     name:
       - glusterfs-server
+    state: present
+  when: glusterfs_server_use
+
+- name: Ensure Gluster Client packages is installed.
+  yum:
+    name:
       - glusterfs-client
     state: present

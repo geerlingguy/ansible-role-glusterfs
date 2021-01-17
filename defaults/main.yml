@@ -1,5 +1,6 @@
 ---
 glusterfs_daemon: glusterd
+glusterfs_server_use: true
 
 # For Ubuntu.
 glusterfs_default_release: ""

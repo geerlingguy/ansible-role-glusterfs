@@ -12,19 +12,33 @@
   register: glusterfs_ppa_added
   when: glusterfs_ppa_use
 
-- name: Ensure GlusterFS will reinstall if the PPA was just added.
+- name: Ensure GlusterFS Server will reinstall if the PPA was just added.
   apt:
     name:
       - glusterfs-server
+    state: absent
+  when: (glusterfs_ppa_added.changed and glusterfs_server_use)
+  tags: ['skip_ansible_lint']
+
+- name: Ensure GlusterFS Client will reinstall if the PPA was just added.
+  apt:
+    name:
       - glusterfs-client
     state: absent
   when: glusterfs_ppa_added.changed
   tags: ['skip_ansible_lint']
 
-- name: Ensure GlusterFS is installed.
+- name: Ensure GlusterFS Server is installed.
   apt:
     name:
       - glusterfs-server
+    state: present
+    default_release: "{{ glusterfs_default_release }}"
+  when: glusterfs_server_use
+
+- name: Ensure GlusterFS Client is installed.
+  apt:
+    name:
       - glusterfs-client
     state: present
     default_release: "{{ glusterfs_default_release }}"
