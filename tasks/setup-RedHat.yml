@@ -1,4 +1,17 @@
 ---
+- name: Enable powertools for python3-pyxattr
+  community.general.ini_file:
+    path: /etc/yum.repos.d/CentOS-Linux-PowerTools.repo
+    section: powertools
+    option: enabled
+    value: "1"
+    mode: "0644"
+  notify:
+    - yum update cache
+  when:
+    - ansible_distribution in [ "CentOS", "EL" ]
+    - ansible_distribution_major_version >= "8"
+    
 - name: Ensure dependencies are installed.
   yum:
     name: "centos-release-gluster{{ glusterfs_default_release }}"
