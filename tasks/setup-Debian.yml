@@ -21,7 +21,7 @@
 - name: Ensure debian repo is present.
   apt_repository:
     repo: "deb https://download.gluster.org/pub/gluster/glusterfs/{{ glusterfs_deb_version }}/Debian/\
-      {{ ansible_distribution_major_version }}/{{ deb_architecture.stdout }}/apt {{ ansible_distribution_release }} \
+      {% if ansible_distribution_major_version|int >= 11 %}{{ ansible_distribution_major_version }}{% else %}{{ ansible_distribution_release }}{% endif %}/{{ deb_architecture.stdout }}/apt {{ ansible_distribution_release }} \
       main"
     state: present
     filename: gluster
