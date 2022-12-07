@@ -43,7 +43,6 @@ jobs:
         distro:
           # See: https://github.com/geerlingguy/ansible-role-glusterfs/issues/44
           # - rockylinux8
-          - centos7
           - ubuntu1804
           - debian10
           - debian11
